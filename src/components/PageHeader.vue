@@ -13,7 +13,7 @@ export default {
 <style lang="scss" scoped>
 h1 {
   font-size: 40px;
-  margin: 0;
+  margin-bottom: 10px;
 }
 ul {
   list-style-type: none;
@@ -27,6 +27,7 @@ li {
   margin: 0;
   padding: 1% 5%;
   color: #22b2ea;
+  background-color: rgb(239 251 255 / 50%);
   text-shadow: 3px -4px 5px rgba(0, 0, 0, 0.5);
 }
 </style>

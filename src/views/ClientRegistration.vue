@@ -1,11 +1,12 @@
 <template>
   <div class="main">
-    <div class="form__text">Новый клиент</div>
+    <h2 class="form__text">Новый клиент</h2>
     <form class="form">
       <div class="form__block block__personal">
         <h3 class="form__subheader">
           Личные данные
         </h3>
+        <p>* - обязательные поля</p>
         <div class="form__row">
           <form-input
             v-model="$v.form.name.$model"
@@ -59,17 +60,9 @@
               class="form__select select_multiple"
               :class="{ 'form__select_error': isError }"
             >
-              <div class="input-label">
-                <span>
-                  {{ paramsForFields.clientGroups.label }}
-                </span>
-                <span
-                  v-if="paramsForFields.clientGroups.required"
-                  class="input-label__required"
-                >
-                  {{ paramsForFields.clientGroups.required }}
-                </span>
-              </div>
+              <span class="input-label">
+                {{ paramsForFields.clientGroups.label }}
+              </span>
               <select
                 id="paramsForFields.clientGroups.id"
                 v-model=" $v.form.clientGroup.$model"
@@ -114,6 +107,7 @@
         <h3 class="form__subheader">
           Адрес
         </h3>
+        <p>* - обязательные поля</p>
         <div class="form__row">
           <form-input
               v-model="form.index"
@@ -156,6 +150,7 @@
         <h3 class="form__subheader">
           Документ, удостоверяющий личность
         </h3>
+        <p>* - обязательные поля</p>
         <div class="form__row">
           <form-select
             :params="paramsForFields.docType"
@@ -290,14 +285,12 @@ export default {
       return {
         name: {
           type: 'text',
-          label: 'Имя',
+          label: 'Имя *',
           id: 'name',
-          required: '*',
         },
         surname: {
           type: 'text',
-          label: 'Фамилия',
-          required: '*',
+          label: 'Фамилия *',
           id: 'surname',
         },
         patronymic: {
@@ -307,8 +300,7 @@ export default {
         },
         birthDate: {
           type: 'date',
-          label: 'Дата рождения',
-          required: '*',
+          label: 'Дата рождения *',
           id: 'birth-date',
         },
         clientSex: {
@@ -318,21 +310,18 @@ export default {
         },
         phone: {
           type: 'tel',
-          label: 'Номер телефона',
+          label: 'Номер телефона *',
           id: 'phone',
-          required: '*',
           placeholder: '7-XXX-XXX-XX-XX',
         },
         doctor: {
-          label: 'Лечащий врач',
+          label: 'Лечащий врач *',
           id: 'doctor',
-          required: '*',
           items: this.doctorName,
         },
         clientGroups: {
-          label: 'Группа клиентов',
+          label: 'Группа клиентов *',
           id: 'clientGroup',
-          required: '*',
           items: this.clientGroups,
         },
         index: {
@@ -352,8 +341,7 @@ export default {
         },
         city: {
           type: 'text',
-          label: 'Город',
-          required: '*',
+          label: 'Город *',
           id: 'city',
         },
         street: {
@@ -368,8 +356,7 @@ export default {
         },
         docType: {
           items: this.clientDocs,
-          label: 'Тип документа',
-          required: '*',
+          label: 'Тип документа *',
           id: 'docType',
         },
         docSeries: {
@@ -389,8 +376,7 @@ export default {
         },
         docIssueDate: {
           type: 'date',
-          label: 'Дата выдачи',
-          required: '*',
+          label: 'Дата выдачи *',
           id: 'issueDate',
         },
       };
@@ -416,17 +402,20 @@ export default {
 
 <style lang="scss" scoped>
   .main {
-    position: relative;
     flex-grow: 1;
-    padding: 10%;
-    background: linear-gradient(to top,#01709c, #01709c92,#22b1ea98, white);
-    z-index: 1;
+    padding: 1% 10%;
+    background-color: rgb(239 251 255 / 50%);
   }
 
   .form {
     display: flex;
     flex-direction: column;
     background-color: transparent;
+    // padding: 20px;
+  }
+
+  .form__text {
+    font-size: 1.9em;
   }
 
   .form__block {
@@ -435,30 +424,6 @@ export default {
     background-color: white;
     border-radius: 5px;
     box-shadow: -2px -2px 10px rgba(0, 0, 0, 0.5);
-  }
-
-  .form__text {
-    display: block;
-    box-sizing: border-box;
-    position: absolute;
-    margin-left: -40px;
-    margin-top: -60px;
-    width: 40%;
-    height: 80%;
-    padding: 20px 40px;
-    color: white;
-    background-color: #17799f;
-    border-radius: 5px;
-    box-shadow: -2px 2px 5px 2px rgba(0, 0, 0, 0.5);
-    font-size: 20px;
-    font-weight: 500;
-    z-index: -1;
-  }
-
-  .form__subheader {
-    margin: 0;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
   }
 
   .form__row {

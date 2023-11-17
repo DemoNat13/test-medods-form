@@ -56,14 +56,7 @@ input[type=number] {
 .input-label {
   display: flex;
   column-gap: 5px;
-  // align-items: center;
   margin-bottom: 5px;
-}
-
-.input-label__required {
-  font-size: 12px;
-  font-weight: 500;
-  color: gray;
 }
 
 .input-error {

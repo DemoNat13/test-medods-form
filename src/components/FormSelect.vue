@@ -5,17 +5,9 @@
       class="form__select"
       :class="{ 'form__select_error': isError }"
     >
-      <div class="input-label">
-        <span>
-          {{ params.label }}
-        </span>
-        <span
-          v-if="params.required"
-          class="input-label__required"
-        >
-          {{params.required}}
-        </span>
-      </div>
+      <span class="input-label">
+        {{ params.label }}
+      </span>
       <select
         :id="params.id"
         :value="value"

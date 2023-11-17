@@ -3,19 +3,11 @@
     <label
       :for="params.id"
       class="form__input"
-      :class="{ 'form__input_error': isError}"
+      :class="{ 'form__input_error': isErrorRequired || isErrorLength}"
     >
-      <div class="input-label">
-        <span>
-          {{ params.label }}
-        </span>
-        <span
-          v-if="params.required"
-          class="input-label__required"
-        >
-          {{params.required}}
-        </span>
-      </div>
+      <span class="input-label">
+        {{ params.label }}
+      </span>
       <input
         v-if="params.type == 'tel'"
         :id="params.id"
@@ -35,10 +27,10 @@
       >
       <transition name="fade">
         <div
-          v-if="isError"
+          v-if="isErrorRequired"
           class="input-error"
         >
-          {{ requiredErrorText }}
+          {{ isErrorRequired }}
         </div>
       </transition>
     </label>
@@ -59,11 +51,27 @@ export default {
     valueVuelidate: Object,
   },
   computed: {
-    isError() {
+    isErrorRequired() {
       if (this.valueVuelidate) {
-        return (this.valueVuelidate.$dirty && this.valueVuelidate.$invalid)
-        || (this.isTouched && this.valueVuelidate.$invalid);
-      } return null;
+        if ((this.valueVuelidate.$dirty || this.isTouched) && !this.valueVuelidate.required) {
+          return 'Поле обязательно для заполнения';
+        }
+        if ((this.valueVuelidate.$dirty || this.isTouched) && !this.valueVuelidate?.minLength) {
+          return `Поле должно содержать минимум ${this.valueVuelidate.$params.minLength.min} символов`;
+        }
+
+      //   return (this.valueVuelidate.$dirty && this.valueVuelidate.$invalid)
+      //   || (this.isTouched && this.valueVuelidate.$invalid);
+      // } return null;
+      } return false;
+    },
+    isErrorLength() {
+      // if (this.valueVuelidate.$dirty && !(this.valueVuelidate.maxLength)) {
+      //   return `Поле содержит не более ${this.valueVuelidate.$params.maxLength.max} символов`;
+      // } if (this.valueVuelidate.$dirty && !(this.valueVuelidate.minLength)) {
+      //   return `Поле должно содержать минимум ${this.valueVuelidate.$params.minLength.min} символов`;
+      // } return false;
+      return false;
     },
   },
   methods: {
@@ -120,19 +128,6 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
-// input[type="date"]::-webkit-calendar-picker-indicator {
-//     //display: none;
-//     //-webkit-appearance: none;
-//     width: 15px;
-//     padding: 0px;
-//     margin: 0px;
-//     color: red !important;
-//     // margin-top: 10px;
-// }
-
-// .custom-inpt { // style class to adjust the Date Input control default padding value
-//     background-color: #01709c !important;
-// }
 input[type="date"]::-webkit-calendar-picker-indicator {
     opacity: 1;
     display: block;
