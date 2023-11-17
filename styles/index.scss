@@ -1,0 +1,105 @@
+html,
+body {
+  margin: 0;
+}
+
+input, 
+select {
+  outline: none;
+  font-family: 'Montserrat', sans-serif;
+}
+
+select {
+  overflow-y: auto;
+}
+
+  /* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.form-group {
+  position: relative;
+  margin: 0 0 10px 0;
+  padding: 0 0 20px 0;
+}
+
+.form__select {
+  display: flex;
+  flex-direction: column;
+  font-weight: 700;
+  .input-label {
+    margin-bottom: 5px;
+  }
+  select {
+    // margin-bottom: 10px;
+    padding: 12px;
+    border: 2px solid #22b2ea;
+    background-color: transparent;
+    border-radius: 5px;
+    transition: border-color 0.2s;
+  }
+  select:hover {
+    border: 2px solid #01709c;
+  }
+  select:focus {
+    border: 2px solid #01709c;
+  }
+}
+.input-label {
+  display: flex;
+  column-gap: 5px;
+  // align-items: center;
+  margin-bottom: 5px;
+}
+
+.input-label__required {
+  font-size: 12px;
+  font-weight: 500;
+  color: gray;
+}
+
+.input-error {
+  position: absolute;
+  bottom: 0;
+  color: rgb(242, 97, 97);
+  font-size: 12px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.form__select_error {
+  color: rgb(242, 97, 97);
+  transition: color 0.3s ease;
+  select {
+    border: 2px solid rgb(242, 97, 97);
+  }
+  &:hover,
+  &:focus {
+    color: red;
+    select {
+      border: 2px solid red;
+    }
+  }
+}
+
+.form__input_error:hover .input-error,
+.form__input_error:focus .input-error {
+  color: red;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.3s ease-in;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
