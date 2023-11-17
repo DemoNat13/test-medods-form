@@ -1,6 +1,9 @@
 <template>
   <div class="main">
     <h2 class="form__text">Новый клиент</h2>
+    <div v-if="!$v.$invalid">
+      Клиент успешно создан
+    </div>
     <form class="form">
       <div class="form__block block__personal">
         <h3 class="form__subheader">
@@ -13,12 +16,14 @@
             class="form__input"
             :value-vuelidate="$v.form.name"
             :params="paramsForFields.name"
+            hasMinLength
           />
           <form-input
             v-model="$v.form.surname.$model"
             class="form__input"
             :params="paramsForFields.surname"
             :value-vuelidate="$v.form.surname"
+            hasMinLength
           />
           <form-input
             v-model="form.patronymic"
@@ -35,7 +40,7 @@
           <form-input
             v-model="$v.form.birthDate.$model"
             :params="paramsForFields.birthDate"
-            :value-vuelidate="$v.form.surname"
+            :value-vuelidate="$v.form.birthDate"
             class="form__input form__input_birth"
           />
         </div>
@@ -45,6 +50,8 @@
             :params="paramsForFields.phone"
             :value-vuelidate="$v.form.phone"
             class="form__input form__input_phone"
+            hasMinLength
+            hasMaxLength
           />
           <form-select
             v-model="$v.form.doctor.$model"
@@ -76,11 +83,15 @@
                 <option> OMC </option>
               </select>
 
-              <div
-                v-if="isError"
-                class="select-error"
-              >
-                {{ isError }}
+              <div class="input-error__wrapper">
+                <transition name="fade">
+                  <div
+                    v-if="isError"
+                    class="input-error"
+                  >
+                    {{ isError }}
+                  </div>
+                </transition>
               </div>
             </label>
           </div>
@@ -301,7 +312,7 @@ export default {
         birthDate: {
           type: 'date',
           label: 'Дата рождения *',
-          id: 'birth-date',
+          id: 'birthDate',
         },
         clientSex: {
           label: 'Пол',
@@ -383,18 +394,15 @@ export default {
     },
     isError() {
       if (this.valueVuelidate) {
-        return (this.valueVuelidate.$dirty && this.valueVuelidate.$invalid)
-        || (this.isTouched && this.valueVuelidate.$invalid);
-      } return null;
+        if ((this.valueVuelidate.$dirty || this.isTouched) && !this.valueVuelidate.required) {
+          return 'Поле обязательно для заполнения';
+        }
+      } return false;
     },
   },
   methods: {
-    showRequiredError(val) {
-      return val ? 'Поле обязательно для заполнения' : null;
-    },
     handleSelectChange(event) {
       this.$emit('input', event.target.value);
-      console.log('event.target.value', event.target.value);
     },
   },
 };
@@ -411,7 +419,6 @@ export default {
     display: flex;
     flex-direction: column;
     background-color: transparent;
-    // padding: 20px;
   }
 
   .form__text {

@@ -3,7 +3,7 @@
     <label
       :for="params.id"
       class="form__select"
-      :class="{ 'form__select_error': isError }"
+      :class="{ 'form__input_error': isError }"
     >
       <span class="input-label">
         {{ params.label }}
@@ -14,18 +14,24 @@
         @change="handleSelectChange"
         @blur="isTouched = true"
       >
-        <option v-for="item in params.items" :value="item" :key="item">
+        <option
+          v-for="item in params.items"
+          :value="item"
+          :key="item"
+        >
           {{ item }}
         </option>
       </select>
-      <transition name="fade">
-        <div
-          v-if="isError"
-          class="input-error"
-        >
-          {{ requiredErrorText }}
-        </div>
-      </transition>
+      <div class="input-error__wrapper">
+        <transition name="fade">
+          <div
+            v-if="isError"
+            class="input-error"
+          >
+            {{ isError }}
+          </div>
+        </transition>
+      </div>
     </label>
   </div>
 </template>
@@ -41,14 +47,14 @@ export default {
   data: () => ({
     showError: false,
     isTouched: false,
-    requiredErrorText: 'Поле обязательно для заполнения',
   }),
   computed: {
     isError() {
       if (this.valueVuelidate) {
-        return (this.valueVuelidate.$dirty && this.valueVuelidate.$invalid)
-        || (this.isTouched && this.valueVuelidate.$invalid);
-      } return null;
+        if ((this.valueVuelidate.$dirty || this.isTouched) && !this.valueVuelidate.required) {
+          return 'Поле обязательно для заполнения';
+        }
+      } return false;
     },
   },
   methods: {
@@ -62,10 +68,10 @@ export default {
 <style lang="scss" scoped>
   select {
     appearance: none;
-    background: url('../assets/icons/menu-down.svg') no-repeat right center;
-    background-size: 40px 45px;
+    background: url('../assets/icons/chevron-down.svg') no-repeat 98% center;
+    background-size: 30px 30px;
     -webkit-appearance: none;
     -moz-appearance: none;
-    padding-right: 20px;
+    padding-right: 24px !important;
   }
 </style>

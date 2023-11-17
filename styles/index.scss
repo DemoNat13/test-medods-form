@@ -27,8 +27,7 @@ input[type=number] {
 
 .form-group {
   position: relative;
-  margin: 0 0 10px 0;
-  padding: 0 0 20px 0;
+  margin-bottom: 20px;
 }
 
 .form__select {
@@ -39,7 +38,6 @@ input[type=number] {
     margin-bottom: 5px;
   }
   select {
-    // margin-bottom: 10px;
     padding: 12px;
     border: 2px solid #22b2ea;
     background-color: transparent;
@@ -59,32 +57,35 @@ input[type=number] {
   margin-bottom: 5px;
 }
 
+.input-error__wrapper {
+  height: 20px;
+  width: fit-content;
+}
+
 .input-error {
   position: absolute;
-  bottom: 0;
   color: rgb(242, 97, 97);
   font-size: 12px;
   font-weight: 500;
   transition: color 0.3s ease;
 }
 
-.form__select_error {
+.form__input_error {
   color: rgb(242, 97, 97);
   transition: color 0.3s ease;
   select {
     border: 2px solid rgb(242, 97, 97);
   }
-  &:hover,
-  &:focus {
+  &:hover {
     color: red;
-    select {
+  }
+  select:hover,
+  select:focus {
       border: 2px solid red;
-    }
   }
 }
 
-.form__input_error:hover .input-error,
-.form__input_error:focus .input-error {
+.form__input_error:hover .input-error {
   color: red;
 }
 
