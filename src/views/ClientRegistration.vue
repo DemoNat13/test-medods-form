@@ -1,9 +1,6 @@
 <template>
   <div class="main">
     <h2 class="form__text">Новый клиент</h2>
-    <div v-if="!$v.$invalid">
-      Клиент успешно создан
-    </div>
     <form class="form">
       <div class="form__block block__personal">
         <h3 class="form__subheader">
@@ -195,6 +192,19 @@
         </div>
       </div>
     </form>
+    <div class="form__success">
+      <transition name="fade">
+        <div
+          v-if="!$v.$invalid"
+          class="form__success-block"
+        >
+          <div class="form__success-icon"></div>
+          <p class="form__success-text">
+            Клиент успешно создан
+          </p>
+        </div>
+      </transition>
+    </div>
   </div>
 </template>
 
@@ -323,7 +333,7 @@ export default {
           type: 'tel',
           label: 'Номер телефона *',
           id: 'phone',
-          placeholder: '7-XXX-XXX-XX-XX',
+          placeholder: '7XXXXXXXXXX',
         },
         doctor: {
           label: 'Лечащий врач *',
@@ -504,6 +514,38 @@ export default {
 
 .form__checkbox input:hover + .checkbox__text:before {
   box-shadow: inset 0 2px 3px rgba(0,0,0,.2), 0 0 0 2px #01709c;
+}
+.form__success {
+  position: fixed;
+  z-index: 1;
+  top: 20px;
+  right: 20px;
+}
+
+.form__success-block {
+  display: flex;
+  column-gap: 10px;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  background-color: #22b1ea1d;
+  border: 2px solid #22b2ea;
+  border-radius: 5px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.form__success-text {
+  width: fit-content;
+  box-sizing: border-box;
+  margin: 0;
+  font-size: 18px;
+}
+
+.form__success-icon {
+  width: 30px;
+  height: 30px;
+  background: url('../assets/icons/check-all.svg')no-repeat;
 }
 
 </style>
