@@ -5,7 +5,6 @@ import App from './App.vue';
 import '../styles/index.scss';
 import '../styles/normalize.scss';
 
-Vue.config.devtools = true;
 Vue.config.productionTip = false;
 Vue.use(Vuelidate);
 
