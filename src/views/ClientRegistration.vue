@@ -219,7 +219,6 @@ export default {
     FormSelect,
   },
   data: () => ({
-    testName: 'hello',
     showError: false,
     isTouched: false,
     form: {
@@ -265,7 +264,6 @@ export default {
   }),
   validations() {
     return {
-      testName: { required },
       form: {
         name: {
           required,
@@ -460,32 +458,32 @@ export default {
     flex: 1 2 auto;
   }
 
-.form__checkbox input {
-  position: absolute;
-  z-index: -1;
-  opacity: 0;
-  margin: 10px 0 0 20px;
-}
+  .form__checkbox input {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+    margin: 10px 0 0 20px;
+  }
 
-.checkbox__text {
-  position: relative;
-  padding: 0 0 0 60px;
-  font-weight: 600;
-  cursor: pointer;
-}
+  .checkbox__text {
+    position: relative;
+    padding: 0 0 0 60px;
+    font-weight: 600;
+    cursor: pointer;
+  }
 
-.checkbox__text:before {
-  content: '';
-  position: absolute;
-  top: -4px;
-  left: 0;
-  width: 50px;
-  height: 26px;
-  border-radius: 13px;
-  background: #CDD1DA;
-  box-shadow: inset 0 2px 3px rgba(0,0,0,.2), 0 0 0 2px #22b2ea;
-  transition: .2s;
-}
+  .checkbox__text:before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: 0;
+    width: 50px;
+    height: 26px;
+    border-radius: 13px;
+    background: #CDD1DA;
+    box-shadow: inset 0 2px 3px rgba(0,0,0,.2), 0 0 0 2px #22b2ea;
+    transition: .2s;
+  }
 
 .checkbox__text:after {
   content: '';
