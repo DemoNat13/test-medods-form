@@ -11,6 +11,6 @@ export default {
 <style lang="scss">
 .footer {
   padding: 1% 5%;
-  background-color: rgb(239 251 255 / 50%);
+  background-color: rgba(239, 251, 255, 0.5);
 }
 </style>

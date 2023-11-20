@@ -79,69 +79,68 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .form__input {
-    display: flex;
-    flex-direction: column;
-    font-weight: 700;
-    input {
-      padding: 12px;
-      border: 2px solid #22b2ea;
-      border-radius: 5px;
-      background-color: transparent;
-      transition: border-color 0.3s;
-    }
-    input:hover {
-      border: 2px solid #01709c;
-    }
-    input:focus {
-      border: 2px solid #01709c;
-    }
+.form__input {
+  display: flex;
+  flex-direction: column;
+  font-weight: 700;
+  input {
+    padding: 12px;
+    border: 2px solid #22b2ea;
+    border-radius: 5px;
+    background-color: transparent;
+    transition: border-color 0.3s;
   }
-  .form__input_error {
-    color: rgb(242, 97, 97);
-    transition: color 0.3s ease;
-    input {
-      border: 2px solid rgb(242, 97, 97);
-    }
-    &:hover {
-      color: red;
-    }
-    input:hover,
-    input:focus {
-        border: 2px solid red;
-    }
+  input:hover {
+    border: 2px solid #01709c;
   }
+  input:focus {
+    border: 2px solid #01709c;
+  }
+}
 
-  /* Chrome, Safari, Edge, Opera */
-  input::-webkit-outer-spin-button,
-  input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+.form__input_error {
+  color: rgb(242, 97, 97);
+  transition: color 0.3s ease;
+  input {
+    border: 2px solid rgb(242, 97, 97);
   }
+  &:hover {
+    color: red;
+  }
+  input:hover,
+  input:focus {
+      border: 2px solid red;
+  }
+}
 
-  /* Firefox */
-  input[type=number] {
-    -moz-appearance: textfield;
-  }
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 
-  input[type="date"] {
-    padding: 9.5px 12px;
-  }
+input[type=number] {
+  -moz-appearance: textfield;
+}
 
-  input[type="date"]::-webkit-calendar-picker-indicator {
-    opacity: 1;
-    background: url('../assets/icons/calendar-month-outline.svg') no-repeat;
-    width: 24px;
-    height: 24px;
-    margin: 0;
-    padding: 0;
-  }
+input[type=date] {
+  padding: 9.5px 12px;
+}
 
-  input:-webkit-autofill,
-  input:-webkit-autofill:hover,
-  input:-webkit-autofill:focus,
-  input:-webkit-autofill:active {
-    -webkit-box-shadow: 0 0 0 30px white inset !important;
-  }
+input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 1;
+  background: url('../assets/icons/calendar-month-outline.svg') no-repeat;
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  padding: 0;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
 
 </style>

@@ -66,12 +66,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  select {
-    appearance: none;
-    background: url('../assets/icons/chevron-down.svg') no-repeat 98% center;
-    background-size: 30px 30px;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    padding-right: 24px !important;
-  }
+select {
+  appearance: none;
+  background: url('../assets/icons/chevron-down.svg') no-repeat 98% center;
+  background-size: 30px 30px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding-right: 24px !important;
+}
 </style>

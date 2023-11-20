@@ -543,7 +543,7 @@ export default {
 .form__success-icon {
   width: 30px;
   height: 30px;
-  background: url('../assets/icons/check-all.svg')no-repeat;
+  background: url('../assets/icons/check-all.svg') no-repeat;
 }
 
 </style>

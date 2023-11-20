@@ -48,8 +48,8 @@ video {
 }
 
 audio:not([controls]) {
-    display: none; // 1
-    height: 0; // 2
+    display: none;
+    height: 0;
 }
 
 [hidden], template {
