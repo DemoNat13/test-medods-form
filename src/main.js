@@ -6,6 +6,7 @@ import '../styles/index.scss';
 import '../styles/normalize.scss';
 
 Vue.config.productionTip = false;
+Vue.config.devtools = true;
 Vue.use(Vuelidate);
 
 new Vue({
